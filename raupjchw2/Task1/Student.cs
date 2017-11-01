@@ -2,7 +2,7 @@
 
 namespace Task1
 {
-    public class Student: Object
+    public class Student
     {
         public string Name { get; set; }
         public string Jmbag { get; set; }
