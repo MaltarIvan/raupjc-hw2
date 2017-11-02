@@ -8,7 +8,7 @@ namespace Task4
     {
         public static string[] Linq1(int[] intArray)
         {
-            throw new NotImplementedException();
+            return intArray.OrderBy(i => i).GroupBy(i => i).Select(g => String.Format("Broj {0} ponavlja se {1} puta", g.Key, g.Count())).ToArray();
         }
         public static University[] Linq2_1(University[] universityArray)
         {
@@ -20,15 +20,15 @@ namespace Task4
         }
         public static Student[] Linq2_3(University[] universityArray)
         {
-            return universityArray.SelectMany(u => u.Students).Distinct().Cast<Student>().ToArray();
+            return universityArray.SelectMany(u => u.Students).Distinct().ToArray();
         }
         public static Student[] Linq2_4(University[] universityArray)
         {
-            return universityArray.Where(u => u.Students.All(s => s.Gender == Gender.Male) || u.Students.All(s => s.Gender == Gender.Female)).SelectMany(s => s.Students).Distinct().Cast<Student>().ToArray(); ;
+            return universityArray.Where(u => u.Students.All(s => s.Gender == Gender.Male) || u.Students.All(s => s.Gender == Gender.Female)).SelectMany(s => s.Students).Distinct().ToArray(); ;
         }
         public static Student[] Linq2_5(University[] universityArray)
         {
-            return universityArray.SelectMany(u => u.Students).GroupBy(s => s.Jmbag).Where(s => s.Count() >= 2).Cast<Student>().ToArray();
+            return universityArray.SelectMany(u => u.Students).GroupBy(s => s.Jmbag).Where(g => g.Count() >= 2).Select(y => y.First()).ToArray();
         }
     }
 }
